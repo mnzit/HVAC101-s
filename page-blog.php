@@ -13,7 +13,7 @@
  *
  * @package HVAC101
  */
-
+//blog page
 get_header(); ?>
 
 <div class="page-inner-heading">
