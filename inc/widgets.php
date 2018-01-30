@@ -260,3 +260,204 @@ function register_recent_blog_widget() {
 }
 
 add_action( 'widgets_init', 'register_recent_blog_widget' );
+
+
+// Promotion and offers
+
+class HVAC101_Offers_Promotion extends WP_Widget {
+	/**
+* Sets up the widgets name etc
+*/
+public function __construct() {
+			// widget actual processes
+			parent::__construct(
+					'offer_and_promotion', // Base ID
+					__( 'Offers and promotion', 'text_domain' ), // Name
+					array( 'description' => __( 'Offers and promotion widget', 'text_domain' ), ) // Args
+			);
+}
+
+/**
+		* Outputs the content of the widget
+		*
+		* @param array $args
+		* @param array $instance
+		*/
+public function widget( $args, $instance ) {
+	extract( $args );
+
+	// Check the widget options
+	$title    = isset( $instance['title'] ) ? apply_filters( 'widget_title', $instance['title'] ) : '';
+
+	// WordPress core before_widget hook (always include )
+	echo $before_widget;
+
+   // Display the widget
+   echo '<div class="widget-text wp_widget_plugin_box">';
+
+		// Display widget title if defined
+		if ( $title ) {
+			echo $before_title . $title . $after_title;
+		}
+		// Display something if checkbox is true
+
+	echo '</div>';
+	ob_start();
+	require get_template_directory() . '/inc/promotion-offers.php';
+	$strrr= ob_get_clean();
+	echo $strrr;
+	// WordPress core after_widget hook (always include )
+	echo $after_widget;
+
+
+
+
+}
+
+/**
+* Outputs the options form on admin
+*
+* @param array $instance The widget options
+*/
+public function form( $instance ) {
+
+// Set widget defaults
+$defaults = array(
+	'title'    => ''
+);
+
+// Parse current settings with defaults
+extract( wp_parse_args( ( array ) $instance, $defaults ) ); ?>
+
+<?php // Widget Title ?>
+<p>
+	<label for="<?php echo esc_attr( $this->get_field_id( 'title' ) ); ?>"><?php _e( 'Widget Title', 'text_domain' ); ?></label>
+	<input class="widefat" id="<?php echo esc_attr( $this->get_field_id( 'title' ) ); ?>" name="<?php echo esc_attr( $this->get_field_name( 'title' ) ); ?>" type="text" value="<?php echo esc_attr( $title ); ?>" />
+</p>
+
+
+<?php }
+
+/**
+* Processing widget options on save
+*
+* @param array $new_instance The new options
+* @param array $old_instance The previous options
+*/
+public function update( $new_instance, $old_instance ) {
+	$instance = $old_instance;
+
+	$instance['title']    = isset( $new_instance['title'] ) ? wp_strip_all_tags( $new_instance['title'] ) : '';
+	return $instance;
+}
+
+}
+
+function register_offers_and_promotion_widget() {
+		register_widget( 'HVAC101_Offers_Promotion' );
+}
+
+add_action( 'widgets_init', 'register_offers_and_promotion_widget' );
+
+
+
+
+//Testimonials
+class HVAC101_Testimonials extends WP_Widget {
+	/**
+* Sets up the widgets name etc
+*/
+public function __construct() {
+			// widget actual processes
+			parent::__construct(
+					'Testimonials', // Base ID
+					__( 'Testimonials', 'text_domain' ), // Name
+					array( 'description' => __( 'Testimonials widget', 'text_domain' ), ) // Args
+			);
+}
+
+/**
+		* Outputs the content of the widget
+		*
+		* @param array $args
+		* @param array $instance
+		*/
+public function widget( $args, $instance ) {
+	extract( $args );
+
+	// Check the widget options
+	$title    = isset( $instance['title'] ) ? apply_filters( 'widget_title', $instance['title'] ) : '';
+
+	// WordPress core before_widget hook (always include )
+	echo $before_widget;
+
+   // Display the widget
+   echo '<div class="widget-text wp_widget_plugin_box">';
+
+		// Display widget title if defined
+		if ( $title ) {
+			echo $before_title . $title . $after_title;
+		}
+		// Display something if checkbox is true
+
+	echo '</div>';
+	ob_start();
+	require get_template_directory() . '/inc/testimonials.php';
+	$strrr= ob_get_clean();
+	echo $strrr;
+	// WordPress core after_widget hook (always include )
+	echo $after_widget;
+
+
+
+
+}
+
+/**
+* Outputs the options form on admin
+*
+* @param array $instance The widget options
+*/
+public function form( $instance ) {
+
+// Set widget defaults
+$defaults = array(
+	'title'    => ''
+);
+
+// Parse current settings with defaults
+extract( wp_parse_args( ( array ) $instance, $defaults ) ); ?>
+
+<?php // Widget Title ?>
+<p>
+	<label for="<?php echo esc_attr( $this->get_field_id( 'title' ) ); ?>"><?php _e( 'Widget Title', 'text_domain' ); ?></label>
+	<input class="widefat" id="<?php echo esc_attr( $this->get_field_id( 'title' ) ); ?>" name="<?php echo esc_attr( $this->get_field_name( 'title' ) ); ?>" type="text" value="<?php echo esc_attr( $title ); ?>" />
+</p>
+
+
+<?php }
+
+/**
+* Processing widget options on save
+*
+* @param array $new_instance The new options
+* @param array $old_instance The previous options
+*/
+public function update( $new_instance, $old_instance ) {
+	$instance = $old_instance;
+
+	$instance['title']    = isset( $new_instance['title'] ) ? wp_strip_all_tags( $new_instance['title'] ) : '';
+	return $instance;
+}
+
+}
+
+function register_testimonials_widget() {
+		register_widget( 'HVAC101_Testimonials' );
+}
+
+add_action( 'widgets_init', 'register_testimonials_widget' );
+
+
+
+

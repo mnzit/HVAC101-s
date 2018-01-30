@@ -147,7 +147,6 @@ jQuery(document).ready(function($) {
         }
     });
 
-
    $(".testimonials-layout-1").find("#home-page-testimonials").owlCarousel({
     loop: true,
     margin: 30,
@@ -220,8 +219,49 @@ jQuery(document).ready(function($) {
     }
     });
 
-
-
+    $(".testimonials_widget").find("#testimonials_widget").owlCarousel({
+        loop: true,
+        margin: 30,
+        autoplay: true,
+        nav: true,
+        dots: true,
+        autoplaySpeed: 1000,
+        pagination: true,
+        navText: ['&#x2039', '&#x203a'],
+        navContainer: ".testimonials-control .navi",
+        dotsContainer: ".testimonials-control .dots",
+        responsive: {
+            0: {
+                items: 1
+            },
+            768: {
+                items: 1
+            },
+            1170: {
+                items: 1,
+            }
+        }
+        });
+        $(".promotions_widget").find("#promotions_widget").owlCarousel({
+            loop: true,
+            margin: 30,
+            autoplay: true,
+            autoplaySpeed: 1000,
+            navText: ['&#x2039', '&#x203a'],
+            navContainer: ".offers_and_promotion .navi",
+            dotsContainer: ".offers_and_promotion .dots",
+            responsive: {
+                0: {
+                    items: 1
+                },
+                768: {
+                    items: 1
+                },
+                1170: {
+                    items: 1,
+                }
+            }
+        });
 
 
 
